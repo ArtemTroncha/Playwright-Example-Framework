@@ -48,9 +48,10 @@ jobs:
         path: downoaled-report
 
     - name: Open report
-      run: 
-          if [ "$(uname)" == "Darwin" ]; then
+      run: |
+          # Replace with the appropriate command to open the Playwright report based on your environment
+          if [ "$(uname)" = "Darwin" ]; then
             open downloaded-report/playwright-report/index.html
-          elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+          elif [ "$(expr substr $(uname -s) 1 5)" = "Linux" ]; then
             xdg-open downloaded-report/playwright-report/index.html
           fi
