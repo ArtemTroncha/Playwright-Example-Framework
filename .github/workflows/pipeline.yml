@@ -45,7 +45,7 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: playwright-report
-        path: downoaled-report
+        path: downloaded-report
 
     - name: Open Playwright Report
       run: xdg-open downloaded-report/index.html
