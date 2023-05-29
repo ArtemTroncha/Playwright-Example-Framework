@@ -48,4 +48,19 @@ jobs:
         path: downloaded-report
 
     - name: Open Playwright Report
-      run: xdg-open downloaded-report/index.html
+      run: |
+          if [ "$(uname)" = "Darwin" ]; then
+            open downloaded-report/index.html
+          elif [ "$(uname)" = "Linux" ]; then
+            if command -v google-chrome; then
+              google-chrome downloaded-report/index.html
+            elif command -v firefox; then
+              firefox downloaded-report/index.html
+            else
+              echo "Unable to find a supported browser."
+              exit 1
+            fi
+          else
+            echo "Unsupported operating system."
+            exit 1
+          fi
