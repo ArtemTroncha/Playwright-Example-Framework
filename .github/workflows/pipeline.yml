@@ -29,24 +29,24 @@ jobs:
  
     - name: Run tests
       run: npm run test
+
+    - name: Upload report artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: playwright-report
+        path: playwright-report
   
   generateReport:
     needs: test
     runs-on: ubuntu-latest
 
     steps:
-    - name: Upload report artifact
-      uses: actions/upload-artifact@v2
-      with:
-        name: playwright-report
-        path: $GITHUB_WORKSPACE/playwright-report
-
     - name: Download report artifact
       uses: actions/download-artifact@v2
       with:
         name: playwright-report
-        path: $GITHUB_WORKSPACE/playwright-report
+        path: downoaled-report
 
     - name: Open report
       run: 
-          open playwright-report/index.html
+          open downoaled-report/playwright-report/index.html
